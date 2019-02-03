@@ -1,15 +1,22 @@
 <template>
   <section class="container">
     <div id="main">
+      <nav class="navbar">
+        <ul>
+          <li>Home</li>
+          <li>Blog</li>
+        </ul>
+      </nav>
 
       <h1>Hi, I'm Thibaut Davoult<span class="easteregg clickappear" data-id="egg">.</span></h1>
+
 
       <div>
         I work as Growth Engineer at <a target='_blank' href="https://livestorm.co">Livestorm</a>, so I do a bit of <span class="event" v-on:click="code = true">code</span> and a bit of <span class="event" v-on:click="marketing = true">marketing</span>. But <span class="event" v-on:click="life = true">there's more</span>.
 
         <!-- code info -->
         <div class="block" v-if="code">
-          I attended the <a target='_blank' href="http://ironhack.com">Ironhack</a> fullstack web development bootcamp. Where I did 3 projects:
+          In 2017, I attended the <a target='_blank' href="http://ironhack.com">Ironhack</a> fullstack web development bootcamp. Where I did 3 projects:
           <div class="smallblock">
             <ul>
               <li><a target='_blank' href="https://code-help.co">Code-Help</a> // Live coding sessions between students and teachers, built with a fellow student</li>
@@ -54,11 +61,6 @@ export default {
       }
     }
   },
-  // computed: {
-  //   getDate() {
-  //     return this.date.getFullYear()
-  //   },
-  // }
 }
 </script>
 
@@ -121,10 +123,19 @@ html, body {
   line-height: 1.5em;
 }
 
+.navbar ul {
+  display: flex;
+}
+
+.navbar ul li {
+  list-style-type: none;
+  margin: 0 10px 20px 0;
+}
+
 #main {
   width: 800px;
   margin: auto;
-  margin-top: 80px;
+  margin-top: 20px;
   padding: 20px 40px;
   z-index: 100;
 }
