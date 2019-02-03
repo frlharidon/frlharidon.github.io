@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 module.exports = {
   /*
   ** Headers of the page
@@ -34,6 +36,21 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+    }
+  },
+  modules: [
+    '@nuxtjs/axios',
+  ],
+  generate: {
+    routes () {
+      return axios.get('https://jsonplaceholder.typicode.com/posts')
+        .then((res) => {
+          var rts = []
+          res.data.forEach((d) => {
+            rts.push('/articles/' + d.id)
+          })
+          return rts
+        })
     }
   }
 }

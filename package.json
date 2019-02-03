@@ -13,9 +13,10 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "axios": "^0.18.0",
     "npm": "^6.7.0",
-    "nuxt": "^2.0.0",
-    "terser": "^3.14.1"
+    "nuxt": "^2.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
@@ -23,7 +24,10 @@
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-loader": "^2.1.1",
     "eslint-plugin-vue": "^4.0.0",
-    "hard-source-webpack-plugin": "https://github.com/chronweigle/hard-source-webpack-plugin/#add-prefix",
-    "terser-webpack-plugin": "1.2.1"
+    "hard-source-webpack-plugin": "git+https://github.com/chronweigle/hard-source-webpack-plugin.git#add-prefix",
+    "terser": "^3.14.1",
+    "terser-webpack-plugin": "1.2.1",
+    "uglifyjs-webpack-plugin": "^2.1.1",
+    "webpack": "^4.29.0"
   }
 }

@@ -41,14 +41,33 @@
           I also <a target='_blank' href="https://twitter.com/thibautdavoult">tweet</a>, take <a target='_blank' href="https://instagram.com/thibautdavoult">photos</a>, etc.
         </div>
       </div>
+      <div>
+        <article>
+          <h1>Index</h1>
+          <div class="grid">
+            <ul>
+              <li v-for="article in articles" :key="article" class="item">
+                <nuxt-link :to="'/articles/' + article.id">{{ article.title }}</nuxt-link>
+              </li>
+            </ul>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
 import AppLogo from '~/components/AppLogo.vue'
+import axios from 'axios'
+
 
 export default {
+  title: 'Hey there',
+  async asyncData () {
+    const {data} = await axios.get('https://jsonplaceholder.typicode.com/posts')
+    return {articles:data}
+  },
   data() {
     return {
       date: new Date(),
