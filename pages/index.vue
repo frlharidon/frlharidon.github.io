@@ -1,22 +1,39 @@
 <template>
   <section class="container">
-    <div>
-      <h1 class="title">
-        Thibaut Davoult
-      </h1>
-      <h2 class="subtitle">
-        Peronal Website
-      </h2>
-      <h3>
-        2017 - Now: Growth Engineer at <a href="https://livestorm.co/">Livestorm</a>
-      </h3>
-      <p>Test: <span v-show="seen">now you see me</span></p>
+    <div id="main">
 
-      <ul id="v-for-object">
-        <li v-for="job in jobs" :key="job.id">
-            {{ job }}
-        </li>
-      </ul>
+      <h1>Hi, I'm Thibaut Davoult<span class="easteregg clickappear" data-id="egg">.</span></h1>
+
+      <div>
+        I work as Growth Engineer at <a target='_blank' href="https://livestorm.co">Livestorm</a>, so I do a bit of <span class="event" v-on:click="code = true">code</span> and a bit of <span class="event" v-on:click="marketing = true">marketing</span>. But <span class="event" v-on:click="life = true">there's more</span>.
+
+        <!-- code info -->
+        <div class="block" v-if="code">
+          I attended the <a target='_blank' href="http://ironhack.com">Ironhack</a> fullstack web development bootcamp. Where I did 3 projects:
+          <div class="smallblock">
+            <ul>
+              <li><a target='_blank' href="https://code-help.co">Code-Help</a> // Live coding sessions between students and teachers, built with a fellow student</li>
+              <li><a target='_blank' href="http://bandaid-ih.herokuapp.com">Bandaid</a> // Music discovery app, scraping and sorting your bandcamp.com feed for you.</li>
+              <li><a target='_blank' href="http://thibautdavoult.com/coolbloqs">Coolbloqs</a> // A game where you need to take control of colored tiles</li>
+            </ul>
+          </div>
+        </div>
+        <!-- marketing info -->
+        <div class="block" v-if="marketing">
+          I've been working in SaaS marketing for {{ date.getFullYear() - 2012 }} years.
+          <div class="smallblock">
+            <ul>
+              <li>2012 - 2015: TOTEMS (acq. by Stripe) // Content Marketing</li>
+              <li>2015 - 2017: Wisembly // Growth Marketing</li>
+              <li>2017 - now: <a target='_blank' href="https://livestorm.co">Livestorm</a> // Growth Engineer</li>
+            </ul>
+          </div>
+        </div>
+        <!-- marketing info -->
+        <div class="block" v-if="life">
+          I also <a target='_blank' href="https://twitter.com/thibautdavoult">tweet</a>, take <a target='_blank' href="https://instagram.com/thibautdavoult">photos</a>, etc.
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -25,22 +42,153 @@
 import AppLogo from '~/components/AppLogo.vue'
 
 export default {
-  components: {
-    AppLogo
-  },
   data() {
     return {
-      seen: false,
+      date: new Date(),
+      code: false,
+      marketing: false,
+      life: false,
       jobs: {
         lastJob: 'Growth Engineer at Livestorm',
         prevJob: 'Growth & Marketing at Wisembly',
       }
     }
-  }
+  },
+  // computed: {
+  //   getDate() {
+  //     return this.date.getFullYear()
+  //   },
+  // }
 }
 </script>
 
 <style>
+
+/* RESET STYLES */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	/*list-style: none;*/
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* MY OWN STYLE */
+
+html, body {
+  margin: 0;
+  color: #333;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 100;
+  font-size: 1.2em;
+  line-height: 1.5em;
+}
+
+#main {
+  width: 800px;
+  margin: auto;
+  margin-top: 80px;
+  padding: 20px 40px;
+  z-index: 100;
+}
+
+h1, h2 {
+  font-family: 'Josefin Slab', serif;
+}
+
+h1 {
+  font-size: 1.8em;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+p {
+	margin-top: 15px;
+}
+
+a {
+  color: black;
+  background-color: #68C5DB;
+  text-decoration: none;
+  padding: 0px 3px;
+}
+
+.block {
+  margin-top: 20px;
+}
+
+.smallblock {
+  margin-top: 10px;
+}
+
+.event {
+  background-color: #FF1654;
+  padding: 0px 3px;
+  cursor: pointer;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.easteregg {
+  color: #FF1654;
+}
+
+/* Mobile (stolen 100% from gflandre) */
+
+@media (max-width: 835px) {
+  html, body {
+    width: 100%;
+  }
+}
+
+  body {
+    padding-left: 20px;
+  }
+
+  #main {
+    width: auto;
+    margin-top: 20px;
+  }
+
 .container {
   min-height: 100vh;
   display: flex;
