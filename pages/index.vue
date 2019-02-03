@@ -178,7 +178,6 @@ a {
   html, body {
     width: 100%;
   }
-}
 
   body {
     padding-left: 20px;
@@ -188,6 +187,7 @@ a {
     width: auto;
     margin-top: 20px;
   }
+}
 
 .container {
   min-height: 100vh;
