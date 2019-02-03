@@ -1,0 +1,2 @@
+# Redirect default Netlify subdomain to primary domain
+http://upbeat-lewin-4d868e.netlify.com/* http://thibautdavoult.com/:splat 301!
