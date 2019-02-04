@@ -1,4 +1,5 @@
-import axios from 'axios'
+const Prismic = require('prismic-javascript')
+const apiEndpoint = "https://thibautdavoult.prismic.io/api/v2"
 
 module.exports = {
   /*
@@ -43,14 +44,20 @@ module.exports = {
   ],
   generate: {
     routes () {
-      return axios.get('https://jsonplaceholder.typicode.com/posts')
-        .then((res) => {
-          var rts = []
-          res.data.forEach((d) => {
-            rts.push('/articles/' + d.id)
-          })
-          return rts
-        })
+      Prismic.getApi(apiEndpoint).then(function(api) {
+        console.log(api.query(""))
+        return api.query(""); // An empty query will return all the documents
+      }).then((res) => {
+        var rts = []
+        console.log(res.results)
+        // res.results.forEach((d) => {
+        //   rts.push('/articles/' + d.id)
+        // })
+      return rts
+      }, function(err) {
+        console.log("Something went wrong: ", err);
+      });
     }
   }
 }
+
