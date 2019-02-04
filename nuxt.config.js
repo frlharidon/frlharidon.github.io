@@ -50,9 +50,6 @@ module.exports = {
       }).then((res) => {
         var rts = []
         console.log(res.results)
-        // res.results.forEach((d) => {
-        //   rts.push('/articles/' + d.id)
-        // })
       return rts
       }, function(err) {
         console.log("Something went wrong: ", err);
