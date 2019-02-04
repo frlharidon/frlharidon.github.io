@@ -1,7 +1,7 @@
 <template>
   <article>
-    <h1>{{title}}</h1>
-    <p>{{body}}</p>
+    <h1></h1>
+    <p></p>
     <nuxt-link :to="'/'">Back</nuxt-link>
   </article>
 </template>

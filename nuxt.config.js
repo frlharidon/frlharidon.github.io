@@ -1,60 +1,70 @@
-const Prismic = require('prismic-javascript')
-const apiEndpoint = "https://thibautdavoult.prismic.io/api/v2"
+const Prismic = require("prismic-javascript");
+const apiEndpoint = "https://thibautdavoult.prismic.io/api/v2";
 
 module.exports = {
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
-    title: 'Thibaut Davoult',
+    title: "Thibaut Davoult",
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' }
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { hid: "description", name: "description", content: "Nuxt.js project" }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', type: 'text/css', href: '//fonts.googleapis.com/css?family=Josefin+Slab:400,500|Open+Sans:300,400' }
-    ],
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      {
+        rel: "stylesheet",
+        type: "text/css",
+        href:
+          "//fonts.googleapis.com/css?family=Josefin+Slab:400,500|Open+Sans:300,400"
+      }
+    ]
   },
   /*
-  ** Customize the progress bar color
-  */
-  loading: { color: '#68c5db' },
+   ** Customize the progress bar color
+   */
+  loading: { color: "#68c5db" },
   /*
-  ** Build configuration
-  */
+   ** Build configuration
+   */
   build: {
     /*
-    ** Run ESLint on save
-    */
-    extend (config, { isDev, isClient }) {
+     ** Run ESLint on save
+     */
+    extend(config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({
-          enforce: 'pre',
+          enforce: "pre",
           test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
+          loader: "eslint-loader",
           exclude: /(node_modules)/
-        })
+        });
       }
     }
   },
-  modules: [
-    '@nuxtjs/axios',
-  ],
+  modules: ["@nuxtjs/axios"],
   generate: {
-    routes () {
-      Prismic.getApi(apiEndpoint).then(function(api) {
-        console.log(api.query(""))
-        return api.query(""); // An empty query will return all the documents
-      }).then((res) => {
-        var rts = []
-        console.log(res.results)
-      return rts
-      }, function(err) {
-        console.log("Something went wrong: ", err);
-      });
+    routes() {
+      return Prismic.getApi(apiEndpoint)
+        .then(api => {
+          console.log(api.query(""));
+          return api.query(""); // An empty query will return all the documents
+        })
+        .then(res => {
+          var rts = [];
+          res.results.forEach((d) => {
+            console.log(d.id)
+            rts.push('/articles/' + d.id)
+          })
+          console.log(rts)
+          return rts;
+        },
+        err => {
+          console.log("Something went wrong: ", err);
+        }
+      );
     }
   }
-}
-
+};

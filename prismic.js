@@ -7,9 +7,9 @@ Prismic.getApi(apiEndpoint).then(function(api) {
 }).then((res) => {
   var rts = []
   console.log(res)
-  // res.forEach((d) => {
-  //   rts.push('/articles/' + d.id)
-  // })
+  res.results.forEach((d) => {
+    rts.push('/articles/' + d.id)
+  })
   return rts
 }, function(err) {
     console.log("Something went wrong: ", err);

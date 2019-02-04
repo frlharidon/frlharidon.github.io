@@ -37,7 +37,7 @@
         </div>
       </div>
       <div>
-        <!-- <article>
+        <article>
           <h1>Index</h1>
           <div class="grid">
             <ul>
@@ -46,7 +46,7 @@
               </li>
             </ul>
           </div>
-        </article> -->
+        </article>
       </div>
     </div>
   </section>
