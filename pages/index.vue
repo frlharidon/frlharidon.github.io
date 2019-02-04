@@ -1,12 +1,7 @@
 <template>
   <section class="container">
     <div id="main">
-      <nav class="navbar">
-        <ul>
-          <li>Home</li>
-          <li>Blog</li>
-        </ul>
-      </nav>
+      <!-- <bar></bar> -->
 
       <h1>Hi, I'm Thibaut Davoult<span class="easteregg clickappear" data-id="egg">.</span></h1>
 
@@ -42,7 +37,7 @@
         </div>
       </div>
       <div>
-        <article>
+        <!-- <article>
           <h1>Index</h1>
           <div class="grid">
             <ul>
@@ -51,7 +46,7 @@
               </li>
             </ul>
           </div>
-        </article>
+        </article> -->
       </div>
     </div>
   </section>
@@ -59,10 +54,13 @@
 
 <script>
 import AppLogo from '~/components/AppLogo.vue'
+import Bar from '~/components/Bar.vue'
 import axios from 'axios'
 
-
 export default {
+  components: {
+    Bar
+  },
   title: 'Hey there',
   async asyncData () {
     const {data} = await axios.get('https://jsonplaceholder.typicode.com/posts')
@@ -140,15 +138,6 @@ html, body {
   font-weight: 100;
   font-size: 1.2em;
   line-height: 1.5em;
-}
-
-.navbar ul {
-  display: flex;
-}
-
-.navbar ul li {
-  list-style-type: none;
-  margin: 0 10px 20px 0;
 }
 
 #main {
