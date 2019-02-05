@@ -62,7 +62,7 @@ export default {
   asyncData () {
     const apiEndpoint = "https://thibautdavoult.prismic.io/api/v2"
     return Prismic.getApi(apiEndpoint).then((api) => {
-      return api.query('')
+      return api.getByID('XFTQ2xAAACIAU0MK')
     }).then((response) => {
       return { articles: response  }
     })

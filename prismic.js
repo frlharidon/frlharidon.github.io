@@ -16,8 +16,8 @@ const apiEndpoint = "https://thibautdavoult.prismic.io/api/v2"
 // });
 
 Prismic.getApi(apiEndpoint).then(function(api) {
-  console.log(api.getByUID('firs-post'))
-  return api.getbyUID('firs-post')
+  console.log(api.query(''))
+  return api.query('')
 }).then((res) => {
   var rts = []
   console.log(res)
