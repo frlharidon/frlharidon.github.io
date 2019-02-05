@@ -7,11 +7,11 @@
 
 
       <div>
-        I work as Growth Engineer at <a target='_blank' href="https://livestorm.co">Livestorm</a>, so I do a bit of <span class="event" v-on:click="code = true">code</span> and a bit of <span class="event" v-on:click="marketing = true">marketing</span>. But <span class="event" v-on:click="life = true">there's more</span>.
+        <p>I work as Growth Engineer at <a target='_blank' href="https://livestorm.co">Livestorm</a>, so I do a bit of <span class="event" v-on:click="code = true">code</span> and a bit of <span class="event" v-on:click="marketing = true">marketing</span>. But <span class="event" v-on:click="life = true">there's more</span>.</p>
 
         <!-- code info -->
         <div class="block" v-if="code">
-          In 2017, I attended the <a target='_blank' href="http://ironhack.com">Ironhack</a> fullstack web development bootcamp. Where I did 3 projects:
+          <p>In 2017, I attended the <a target='_blank' href="http://ironhack.com">Ironhack</a> fullstack web development bootcamp. Where I did 3 projects:</p>
           <div class="smallblock">
             <ul>
               <li><a target='_blank' href="https://code-help.co">Code-Help</a> // Live coding sessions between students and teachers, built with a fellow student</li>
@@ -22,7 +22,7 @@
         </div>
         <!-- marketing info -->
         <div class="block" v-if="marketing">
-          I've been working in SaaS marketing for {{ date.getFullYear() - 2012 }} years.
+          <p>I've been working in SaaS marketing for {{ date.getFullYear() - 2012 }} years.</p>
           <div class="smallblock">
             <ul>
               <li>2012 - 2015: TOTEMS (acq. by Stripe) // Content Marketing</li>
@@ -33,38 +33,39 @@
         </div>
         <!-- marketing info -->
         <div class="block" v-if="life">
-          I also <a target='_blank' href="https://twitter.com/thibautdavoult">tweet</a>, take <a target='_blank' href="https://instagram.com/thibautdavoult">photos</a>, etc.
+          <p>I also <a target='_blank' href="https://twitter.com/thibautdavoult">tweet</a>, take <a target='_blank' href="https://instagram.com/thibautdavoult">photos</a>, etc.</p>
         </div>
       </div>
       <div>
-        <article>
-          <h1>Index</h1>
-          <div class="grid">
-            <ul>
-              <li v-for="article in articles" :key="article" class="item">
-                <nuxt-link :to="'/articles/' + article.id">{{ article.title }}</nuxt-link>
-              </li>
-            </ul>
-          </div>
-        </article>
+        <h1>Index</h1>
+        <div class="grid">
+            {{ articles }}
+            <!-- <li v-for="article in articles" :key="article" class="item">
+              <nuxt-link :to="'/articles/' + article.id">{{ article.title }}</nuxt-link>
+            </li> -->
+        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script>
+const Prismic = require('prismic-javascript');
 import AppLogo from '~/components/AppLogo.vue'
 import Bar from '~/components/Bar.vue'
-import axios from 'axios'
 
 export default {
   components: {
     Bar
   },
   title: 'Hey there',
-  async asyncData () {
-    const {data} = await axios.get('https://jsonplaceholder.typicode.com/posts')
-    return {articles:data}
+  asyncData () {
+    const apiEndpoint = "https://thibautdavoult.prismic.io/api/v2"
+    return Prismic.getApi(apiEndpoint).then((api) => {
+      return api.query('')
+    }).then((response) => {
+      return { articles: response  }
+    })
   },
   data() {
     return {

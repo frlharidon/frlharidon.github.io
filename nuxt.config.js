@@ -49,16 +49,13 @@ module.exports = {
     routes() {
       return Prismic.getApi(apiEndpoint)
         .then(api => {
-          console.log(api.query(""));
           return api.query(""); // An empty query will return all the documents
         })
         .then(res => {
           var rts = [];
           res.results.forEach((d) => {
-            console.log(d.id)
-            rts.push('/articles/' + d.id)
+            rts.push('/articles/' + d.uid)
           })
-          console.log(rts)
           return rts;
         },
         err => {
