@@ -1,7 +1,8 @@
 <template>
   <article>
     <h1></h1>
-    <p></p>
+    <!-- <p>response: {{ results[0].id }}</p> -->
+    <p>response: </p>
     <nuxt-link :to="'/'">Back</nuxt-link>
   </article>
 </template>
@@ -10,15 +11,22 @@
 import Prismic from 'prismic-javascript'
 
 export default {
-  validate ({params}) {
-    return !isNaN(+params.uid)
-  },
-  async asyncData({params, error}) {
+  // validate ({params}) {
+  //   return !isNaN(+params.id)
+  // },
+  asyncData ({params, error}) {
     const apiEndpoint = "https://thibautdavoult.prismic.io/api/v2"
-    const api = await Prismic.getApi(apiEndpoint)
-    const {data} = await api.getByUID(+params.uid)
-    console.log(data)
-    return data
+    return Prismic.getApi(apiEndpoint).then((api) => {
+      return api.query('')
+    }).then((res) => {
+      let article = ''
+      res.results.forEach((item) => {
+        if (item.uid == params.id) {
+          article = item
+        }
+      })
+      return article
+    })
   }
 }
 </script>

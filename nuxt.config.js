@@ -1,5 +1,5 @@
-const Prismic = require("prismic-javascript");
-const apiEndpoint = "https://thibautdavoult.prismic.io/api/v2";
+const Prismic = require("prismic-javascript")
+const apiEndpoint = "https://thibautdavoult.prismic.io/api/v2"
 
 module.exports = {
   /*
@@ -40,7 +40,7 @@ module.exports = {
           test: /\.(js|vue)$/,
           loader: "eslint-loader",
           exclude: /(node_modules)/
-        });
+        })
       }
     }
   },
@@ -48,20 +48,22 @@ module.exports = {
   generate: {
     routes() {
       return Prismic.getApi(apiEndpoint)
-        .then(api => {
-          return api.query(""); // An empty query will return all the documents
+        .then((api) => {
+          return api.query(
+            Prismic.Predicates.at('document.type', 'blog_post')
+          ) // An empty query will return all the documents
         })
-        .then(res => {
-          var rts = [];
+        .then((res) => {
+          let rts = []
           res.results.forEach((d) => {
             rts.push('/articles/' + d.uid)
           })
-          return rts;
+          return rts
         },
-        err => {
-          console.log("Something went wrong: ", err);
+        (err) => {
+          console.log("Something went wrong: ", err)
         }
-      );
+      )
     }
   }
-};
+}
