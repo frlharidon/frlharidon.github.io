@@ -3,7 +3,7 @@
     <div id="main">
       <!-- <bar></bar> -->
 
-      <h1>Hi, I'm Thibaut Davoult<span class="easteregg clickappear" data-id="egg">.</span></h1>
+      <h1>Hi, I'm Thibaut Davoult<span class="easteregg clickappear" v-on:click="blog = true">.</span></h1>
 
 
       <div>
@@ -36,7 +36,7 @@
           <p>I also <a target='_blank' href="https://twitter.com/thibautdavoult">tweet</a>, take <a target='_blank' href="https://instagram.com/thibautdavoult">photos</a>, etc.</p>
         </div>
       </div>
-      <div>
+      <div class="block" v-if="blog">
         <h1>Index</h1>
         <div class="grid">
           <ul>
@@ -75,10 +75,7 @@ export default {
       code: false,
       marketing: false,
       life: false,
-      jobs: {
-        lastJob: 'Growth Engineer at Livestorm',
-        prevJob: 'Growth & Marketing at Wisembly',
-      }
+      blog: false,
     }
   },
 }
