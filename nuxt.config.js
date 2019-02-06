@@ -44,7 +44,18 @@ module.exports = {
       }
     }
   },
-  modules: ["@nuxtjs/axios"],
+  modules: [
+    "@nuxtjs/axios",
+    ['prismic-nuxt', {
+      endpoint: apiEndpoint,
+      linkResolver: function(doc, ctx) {
+        return '/'
+      },
+      htmlSerializer: function(type, element, content, children) {
+        // Optional HTML Serializer
+      }
+    }]
+  ],
   generate: {
     routes() {
       return Prismic.getApi(apiEndpoint)

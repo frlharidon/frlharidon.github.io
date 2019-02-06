@@ -39,10 +39,10 @@
       <div>
         <h1>Index</h1>
         <div class="grid">
-            {{ articles }}
-            <!-- <li v-for="article in articles" :key="article" class="item">
-              <nuxt-link :to="'/articles/' + article.id">{{ article.title }}</nuxt-link>
-            </li> -->
+          <ul>
+            <li v-for="article in articles" :key="article">
+              <nuxt-link :to="`articles/${article.uid}`">{{ article.uid }}</nuxt-link></li>
+          </ul>
         </div>
       </div>
     </div>
@@ -62,9 +62,11 @@ export default {
   asyncData () {
     const apiEndpoint = "https://thibautdavoult.prismic.io/api/v2"
     return Prismic.getApi(apiEndpoint).then((api) => {
-      return api.getByID('XFTQ2xAAACIAU0MK')
+      return api.query(
+        Prismic.Predicates.at('document.type', 'blog_post')
+      )
     }).then((response) => {
-      return { articles: response  }
+      return { articles: response.results  }
     })
   },
   data() {
@@ -161,6 +163,10 @@ h1 {
 
 p {
 	margin-top: 15px;
+}
+
+p strong {
+  font-weight: 500;
 }
 
 a {

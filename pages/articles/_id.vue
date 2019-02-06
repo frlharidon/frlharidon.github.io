@@ -1,8 +1,10 @@
 <template>
   <article>
     <h1></h1>
-    <!-- <p>response: {{ results[0].id }}</p> -->
-    <p>response: </p>
+    <p>response: {{ $prismic.dom.data }}</p>
+    <div v-html="$prismic.dom.RichText.asHtml(data.title)"></div>
+    <p v-html="$prismic.dom.RichText.asHtml(data.content)"></p>
+    <!-- <p>response: {{ $prismic.results }}</p> -->
     <nuxt-link :to="'/'">Back</nuxt-link>
   </article>
 </template>
@@ -27,6 +29,6 @@ export default {
       })
       return article
     })
-  }
+  },
 }
 </script>

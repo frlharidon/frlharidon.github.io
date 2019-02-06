@@ -18,7 +18,8 @@
     "npm": "^6.7.0",
     "nuxt": "^2.0.0",
     "prismic-dom": "^2.1.0",
-    "prismic-javascript": "^2.0.1"
+    "prismic-javascript": "^2.0.1",
+    "prismic-nuxt": "^0.3.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
