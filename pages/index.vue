@@ -40,7 +40,7 @@
         <h1>Index</h1>
         <div class="grid">
           <ul>
-            <li v-for="article in articles" :key="article">
+            <li v-for="article in articles" :key="article.id">
               <nuxt-link :to="`articles/${article.uid}`">{{ article.uid }}</nuxt-link></li>
           </ul>
         </div>
@@ -51,7 +51,6 @@
 
 <script>
 const Prismic = require('prismic-javascript');
-import AppLogo from '~/components/AppLogo.vue'
 import Bar from '~/components/Bar.vue'
 
 export default {
@@ -155,7 +154,13 @@ h1, h2 {
 h1 {
   font-size: 1.8em;
   font-weight: 600;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-size: 1.4em;
+  font-weight: 400;
+  margin: 15px 0px 10px;
 }
 
 p {

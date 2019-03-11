@@ -1,12 +1,13 @@
 <template>
-  <article>
-    <h1></h1>
-    <p>response: {{ $prismic.dom.data }}</p>
-    <div v-html="$prismic.dom.RichText.asHtml(data.title)"></div>
-    <p v-html="$prismic.dom.RichText.asHtml(data.content)"></p>
-    <!-- <p>response: {{ $prismic.results }}</p> -->
-    <nuxt-link :to="'/'">Back</nuxt-link>
-  </article>
+  <section class="container">
+    <div id="main">
+      <h1 v-html="getTitle(data.title)"></h1>
+
+      <div class="blog-body" v-html="getContent(data.content)"></div>
+
+      <nuxt-link :to="'/'">Back</nuxt-link>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -30,5 +31,31 @@ export default {
       return article
     })
   },
+  methods: {
+    getContent(el) {
+      return this.$prismic.dom.RichText.asHtml(el)
+    },
+    getTitle(el) {
+      return this.$prismic.dom.RichText.asText(el)
+    }
+  }
 }
 </script>
+
+<style>
+
+h1 {
+}
+
+.blog-body h2 {
+}
+
+.blog-body .block-img {
+}
+
+.blog-body .block-img img {
+  max-width: 400px;
+}
+
+
+</style>
