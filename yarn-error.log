@@ -1,0 +1,73 @@
+Arguments: 
+  /usr/local/Cellar/node/9.5.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js dev
+
+PATH: 
+  /Users/thibautdavoult/.rvm/gems/ruby-2.0.0-p247/bin:/Users/thibautdavoult/.rvm/gems/ruby-2.0.0-p247@global/bin:/Users/thibautdavoult/.rvm/rubies/ruby-2.0.0-p247/bin:/Users/thibautdavoult/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  11.8.0
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "name": "portfolio",
+    "version": "1.0.0",
+    "description": "Nuxt.js project",
+    "author": "Thibaut Davoult <thibaut.davoult@gmail.com>",
+    "private": true,
+    "scripts": {
+      "dev": "nuxt",
+      "build": "nuxt build",
+      "start": "nuxt start",
+      "generate": "nuxt generate",
+      "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+      "precommit": "npm run lint"
+    },
+    "dependencies": {
+      "@nuxtjs/axios": "^5.3.6",
+      "axios": "^0.18.0",
+      "npm": "^6.7.0",
+      "nuxt": "^2.0.0",
+      "prismic-dom": "^2.1.0",
+      "prismic-javascript": "^2.0.1",
+      "prismic-nuxt": "^0.3.0"
+    },
+    "devDependencies": {
+      "babel-eslint": "^10.0.1",
+      "eslint": "^4.19.1",
+      "eslint-friendly-formatter": "^4.0.1",
+      "eslint-loader": "^2.1.1",
+      "eslint-plugin-vue": "^4.0.0",
+      "hard-source-webpack-plugin": "git+https://github.com/chronweigle/hard-source-webpack-plugin.git#add-prefix",
+      "terser": "^3.14.1",
+      "terser-webpack-plugin": "1.2.1",
+      "uglifyjs-webpack-plugin": "^2.1.1",
+      "webpack": "^4.29.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: Command failed.
+  Exit code: 127
+  Command: sh
+  Arguments: -c nuxt
+  Directory: /Users/thibautdavoult/code/sites/v2/portfolio
+  Output:
+  
+      at ProcessTermError.MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
+      at new ProcessTermError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:226:113)
+      at ChildProcess.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:30281:17)
+      at ChildProcess.emit (events.js:197:13)
+      at maybeClose (internal/child_process.js:978:16)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:265:5)

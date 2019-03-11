@@ -1,7 +1,6 @@
 <template>
   <article>
-    <h1></h1>
-    <p>response: {{ $prismic.dom.data }}</p>
+    {{ $prismic.dom.data }}
     <div v-html="$prismic.dom.RichText.asHtml(data.title)"></div>
     <p v-html="$prismic.dom.RichText.asHtml(data.content)"></p>
     <!-- <p>response: {{ $prismic.results }}</p> -->
@@ -32,3 +31,23 @@ export default {
   },
 }
 </script>
+
+<style>
+
+h1 {
+  text-align: center;
+}
+
+.blog-body h2 {
+}
+
+.blog-body .block-img {
+   text-align: center;
+}
+
+.blog-body .block-img img {
+  max-width: 400px;
+}
+
+
+</style>
