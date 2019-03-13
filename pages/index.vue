@@ -1,52 +1,33 @@
 <template>
-  <section class="container">
-    <div id="main">
-      <!-- <bar></bar> -->
+  <div class="container">
+    <section class="header">
 
-      <h1>Hi, I'm Thibaut Davoult<span class="easteregg clickappear" v-on:click="blog = true">.</span></h1>
+      <bar></bar>
 
+      <h1>Plomberie du Blavet</h1>
 
-      <div>
-        <p>I work as Growth Engineer at <a target='_blank' href="https://livestorm.co">Livestorm</a>, so I do a bit of <span class="event" v-on:click="code = true">code</span> and a bit of <span class="event" v-on:click="marketing = true">marketing</span>. But <span class="event" v-on:click="life = true">there's more</span>.</p>
+    </section>
 
-        <!-- code info -->
-        <div class="block" v-if="code">
-          <p>In 2017, I attended the <a target='_blank' href="http://ironhack.com">Ironhack</a> fullstack web development bootcamp. Where I did 3 projects:</p>
-          <div class="smallblock">
-            <ul>
-              <li><a target='_blank' href="https://code-help.co">Code-Help</a> // Live coding sessions between students and teachers, built with a fellow student</li>
-              <li><a target='_blank' href="http://bandaid-ih.herokuapp.com">Bandaid</a> // Music discovery app, scraping and sorting your bandcamp.com feed for you.</li>
-              <li><a target='_blank' href="http://thibautdavoult.com/coolbloqs">Coolbloqs</a> // A game where you need to take control of colored tiles</li>
-            </ul>
-          </div>
-        </div>
-        <!-- marketing info -->
-        <div class="block" v-if="marketing">
-          <p>I've been working in SaaS marketing for {{ date.getFullYear() - 2012 }} years.</p>
-          <div class="smallblock">
-            <ul>
-              <li>2012 - 2015: TOTEMS (acq. by Stripe) // Content Marketing</li>
-              <li>2015 - 2017: Wisembly // Growth Marketing</li>
-              <li>2017 - now: <a target='_blank' href="https://livestorm.co">Livestorm</a> // Growth Engineer</li>
-            </ul>
-          </div>
-        </div>
-        <!-- marketing info -->
-        <div class="block" v-if="life">
-          <p>I also <a target='_blank' href="https://twitter.com/thibautdavoult">tweet</a>, take <a target='_blank' href="https://instagram.com/thibautdavoult">photos</a>, etc.</p>
-        </div>
-      </div>
-      <div class="block" v-if="blog">
-        <h1>Index</h1>
+    <hr class="separator">
+
+    <section class="content">
+
+      <h2>Interventions de plomberie à Lanester</h2>
+
+      <div class="block-blog">
+        <h3>Récents articles :</h3>
         <div class="grid">
-          <ul>
+          <ul class="articles-list">
             <li v-for="article in articles" :key="article.id">
-              <nuxt-link :to="`articles/${article.uid}`">{{ article.uid }}</nuxt-link></li>
+              <nuxt-link :to="`articles/${article.uid}`">{{ article.data.title[0].text }}</nuxt-link>
+            </li>
           </ul>
         </div>
       </div>
-    </div>
-  </section>
+
+    </section>
+
+  </div>
 </template>
 
 <script>
@@ -57,9 +38,9 @@ export default {
   components: {
     Bar
   },
-  title: 'Hey there',
+  title: 'Plomberie du Blavet',
   asyncData () {
-    const apiEndpoint = "https://thibautdavoult.prismic.io/api/v2"
+    const apiEndpoint = "https://frlharidon.prismic.io/api/v2"
     return Prismic.getApi(apiEndpoint).then((api) => {
       return api.query(
         Prismic.Predicates.at('document.type', 'blog_post')
@@ -80,9 +61,28 @@ export default {
 }
 </script>
 
-<style>
+<style lang="stylus">
 
 /* RESET STYLES */
+
+
+.header
+  max-width 800px
+  margin auto
+
+  h1
+    font-size 4em
+    font-weight 1000
+    margin-bottom 20px
+    line-height 1.2em
+    text-align center
+  h2
+    font-size 1.2em
+    font-weight 400
+    margin 15px 0 10px
+
+.articles-list
+  list-style none
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -139,28 +139,25 @@ html, body {
   line-height: 1.5em;
 }
 
-#main {
-  width: 800px;
-  margin: auto;
-  margin-top: 20px;
-  padding: 20px 40px;
-  z-index: 100;
-}
 
 h1, h2 {
-  font-family: 'Josefin Slab', serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
-h1 {
-  font-size: 1.8em;
-  font-weight: 600;
-  margin-bottom: 30px;
+#main h1 {
+  text-align: center;
+  font-size: 4em;
+  font-weight: 1000;
+  margin-bottom: 20px;
+  line-height: 1.2em;
 }
 
-h2 {
-  font-size: 1.4em;
+#main h2 {
+  text-align: center;
+  font-size: 1.2em;
   font-weight: 400;
   margin: 15px 0px 10px;
+  color: blue;
 }
 
 p {
@@ -176,6 +173,14 @@ a {
   background-color: #68C5DB;
   text-decoration: none;
   padding: 0px 3px;
+}
+
+.separator {
+  max-width: 100px;
+  margin: 15px auto;
+  border: 0;
+  border-top: 1px solid #eee;
+  border-width: 4px;
 }
 
 .block {
@@ -218,8 +223,13 @@ a {
 }
 
 .container {
-  min-height: 100vh;
-  display: flex;
+  margin: 20px auto 0;
+  max-width: 800px;
+  padding: 20px 40px;
+}
+
+.content {
+  text-align: center;
 }
 
 .title {

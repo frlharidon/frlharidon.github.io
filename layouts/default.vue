@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<style>
+<style lang="stylus">
 html {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
@@ -49,5 +49,9 @@ html {
   color: #fff;
   background-color: #35495e;
 }
-</style>
 
+$bleu-blavet = #2A4261
+$bleu-gris = #5C6A86
+$rouge-orange = #D95826
+
+</style>

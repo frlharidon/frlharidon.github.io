@@ -1,5 +1,5 @@
 const Prismic = require("prismic-javascript")
-const apiEndpoint = "https://thibautdavoult.prismic.io/api/v2"
+const apiEndpoint = "https://frlharidon.prismic.io/api/v2"
 
 module.exports = {
   /*

@@ -1,6 +1,7 @@
 <template>
   <section class="container">
-    <div id="main">
+    <bar></bar>
+    <div id="blog--post">
       <h1 v-html="getTitle(data.title)"></h1>
 
       <div class="blog-body" v-html="getContent(data.content)"></div>
@@ -12,13 +13,14 @@
 
 <script>
 import Prismic from 'prismic-javascript'
+import Bar from '~/components/Bar.vue'
 
 export default {
-  // validate ({params}) {
-  //   return !isNaN(+params.id)
-  // },
+  components: {
+    Bar
+  },
   asyncData ({params, error}) {
-    const apiEndpoint = "https://thibautdavoult.prismic.io/api/v2"
+    const apiEndpoint = "https://frlharidon.prismic.io/api/v2"
     return Prismic.getApi(apiEndpoint).then((api) => {
       return api.query('')
     }).then((res) => {
@@ -42,20 +44,17 @@ export default {
 }
 </script>
 
-<style>
+<style lang="stylus">
 
-h1 {
-}
+.blog-body
+  h3
+    font-size 1.2em
+    font-weight bold
+    color #334C70
 
-.blog-body h2 {
-}
-
-.blog-body .block-img {
-}
-
-.blog-body .block-img img {
-  max-width: 400px;
-}
+  .block-img
+    img
+      max-width 400px
 
 
 </style>
