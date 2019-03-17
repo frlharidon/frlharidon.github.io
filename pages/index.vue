@@ -1,31 +1,62 @@
 <template>
-  <div class="container">
-    <section class="header">
+  <div>
+    <div class="container-large">
+    <bar :navbar="navbar"></bar>
+    </div>
+    <div class="cover">
+      <div class="container titles">
+        <section class="header">
 
-      <bar></bar>
-
-      <h1>Plomberie du Blavet</h1>
-
-    </section>
-
-    <hr class="separator">
-
+          <h1>{{ home[0].data.title[0].text }}</h1>
+          <hr class="separator">
+          <h2>{{ home[0].data.description[0].text }}</h2>
+        </section>
+      </div>
+    </div>
     <section class="content">
-
-      <h2>Interventions de plomberie à Lanester</h2>
-
-      <div class="block-blog">
-        <h3>Récents articles :</h3>
-        <div class="grid">
-          <ul class="articles-list">
-            <li v-for="article in articles" :key="article.id">
-              <nuxt-link :to="`articles/${article.uid}`">{{ article.data.title[0].text }}</nuxt-link>
-            </li>
-          </ul>
+      <div class="container">
+        <div class="form">
+          <form id="rdv" action="">
+            <div>
+              <label for="prenom">Prénom:</label>
+              <input name="prenom" type="text" placeholder="prenom">
+            </div>
+            <div>
+              <label for="nom">Nom:</label>
+              <input name="nom" type="text" placeholder="nom">
+            </div>
+            <div>
+              <label for="email">Email:</label>
+              <input name="email" type="email" placeholder="address email">
+            </div>
+            <div>
+              <label for="description">Description du problème:</label>
+              <input name="description" type="text" placeholder="description du probleme">
+            </div>
+            <div>
+              <input name="envoyer" type="submit" placeholder="envoyer">
+            </div>
+          </form>
         </div>
       </div>
-
     </section>
+
+    <section class="content">
+      <div class="container">
+
+        <div class="block-blog">
+          <h3>{{ home[0].data.blog_articles[0].text }}</h3>
+          <div class="grid">
+            <ul class="articles-list">
+              <li v-for="article in articles" :key="article.id">
+                <nuxt-link :to="`articles/${article.uid}`">{{ article.data.title[0].text }}</nuxt-link>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+  </section>
 
   </div>
 </template>
@@ -42,21 +73,14 @@ export default {
   asyncData () {
     const apiEndpoint = "https://frlharidon.prismic.io/api/v2"
     return Prismic.getApi(apiEndpoint).then((api) => {
-      return api.query(
-        Prismic.Predicates.at('document.type', 'blog_post')
-      )
+      return api.query('')
     }).then((response) => {
-      return { articles: response.results  }
+      return {
+        articles: response.results.filter(x => x.type == "blog_post"),
+        home: response.results.filter(y => y.type == "home"),
+        navbar: response.results.filter(z => z.type == "navbar")
+      }
     })
-  },
-  data() {
-    return {
-      date: new Date(),
-      code: false,
-      marketing: false,
-      life: false,
-      blog: false,
-    }
   },
 }
 </script>
@@ -65,24 +89,72 @@ export default {
 
 /* RESET STYLES */
 
+$bleu-blavet = #2A4261
+
+.cover
+  background-image url('https://prismic-io.s3.amazonaws.com/frlharidon%2F9dd3864e-96fa-4c57-b51e-7a1617e80d4e_neonbrand-717862-unsplash.jpg')
+  background-size cover
+  position relative
+  height 400px
+  &:before
+    position absolute
+    content ''
+    top 0
+    left 0
+    width 100%
+    height 100%
+    background-color #00134a
+    opacity .5
+    z-index 0
+    display block
+
+.cover *
+  position relative
 
 .header
   max-width 800px
   margin auto
 
   h1
-    font-size 4em
+    margin 70px 0 20px
+    font-size 3em
     font-weight 1000
-    margin-bottom 20px
     line-height 1.2em
     text-align center
+    color white
   h2
+    text-align center
     font-size 1.2em
     font-weight 400
     margin 15px 0 10px
+    color white
 
 .articles-list
   list-style none
+
+.container-large
+  max-width 1000px
+  margin auto
+
+.form
+  border 3px solid #eee
+  border-radius 5px
+  background-color white
+  display flex
+  max-width 70%
+  margin 0 auto
+  padding 20px
+
+  div
+    text-align left
+    flex-direction column
+    margin-bottom 10px
+
+    label
+      font-size 0.8em
+
+    input
+      padding 5px
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -223,7 +295,7 @@ a {
 }
 
 .container {
-  margin: 20px auto 0;
+  margin: 0 auto
   max-width: 800px;
   padding: 20px 40px;
 }
