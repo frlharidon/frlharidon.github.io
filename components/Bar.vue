@@ -5,10 +5,10 @@
       <li><nuxt-link :to="'/'">{{ navbar[0].data.title[0].text }}</nuxt-link></li>
     </ul>
     <ul>
-      <li>{{ navbar[0].data.blog[0].text }}</li>
-      <li>{{ navbar[0].data.presentation[0].text }}</li>
-      <li>{{ navbar[0].data.nos_tarifs[0].text }}</li>
-      <li>{{ navbar[0].data.rdv[0].text }}</li>
+      <li class="navbar_pages">{{ navbar[0].data.blog[0].text }}</li>
+      <li class="navbar_pages">{{ navbar[0].data.presentation[0].text }}</li>
+      <li class="navbar_pages">{{ navbar[0].data.nos_tarifs[0].text }}</li>
+      <li class="navbar_pages">{{ navbar[0].data.rdv[0].text }}</li>
     </ul>
   </nav>
 </template>
@@ -47,6 +47,9 @@ $bleu-blavet = #2A4261
       a
         color $bleu-blavet
         background-color white
+
+    .navbar_pages
+      padding 0 5px
 
 
 </style>

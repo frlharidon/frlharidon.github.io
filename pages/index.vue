@@ -15,8 +15,8 @@
     </div>
     <section class="content">
       <div class="container">
-        <div class="form">
-          <form id="rdv" action="">
+        <div ref='form' class="form">
+          <form id="rdv" method="post" action="https://hooks.zapier.com/hooks/catch/3194274/nr868m/">
             <div>
               <label for="prenom">Prénom:</label>
               <input name="prenom" type="text" placeholder="prenom">
@@ -82,6 +82,13 @@ export default {
       }
     })
   },
+  methods: {
+    submit() {
+      this.$refs.form.addEventListener('submit', event => {
+        event.preventDefault()
+      })
+    }
+  }
 }
 </script>
 
