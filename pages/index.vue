@@ -43,18 +43,7 @@
 
     <section class="content">
       <div class="container">
-
-        <div class="block-blog">
-          <h3>{{ home[0].data.blog_articles[0].text }}</h3>
-          <div class="grid">
-            <ul class="articles-list">
-              <li v-for="article in articles" :key="article.id">
-                <nuxt-link :to="`articles/${article.uid}`">{{ article.data.title[0].text }}</nuxt-link>
-              </li>
-            </ul>
-          </div>
-        </div>
-
+        <!-- add image carousel here -->
       </div>
   </section>
 
