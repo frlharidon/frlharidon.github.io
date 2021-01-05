@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "npm": "^6.7.0",
     "nuxt": "^2.0.0",
     "prismic-dom": "^2.1.0",
