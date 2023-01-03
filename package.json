@@ -16,7 +16,7 @@
     "@nuxtjs/axios": "^5.3.6",
     "axios": "^0.18.0",
     "npm": "^6.7.0",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.15.8",
     "prismic-dom": "^2.1.0",
     "prismic-javascript": "^2.0.1",
     "prismic-nuxt": "^0.3.0",
